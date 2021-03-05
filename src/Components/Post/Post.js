@@ -13,15 +13,14 @@ class Post extends Component {
       title: '',
       img: '',
       content: '',
-      loading: true
-    }
+      loading: true,
+    };
   }
 
   componentDidMount() {
-    axios.get(`/api/post/1`)
-      .then(res => {
-        this.setState({ ...res.data, loading: false })
-      })
+    axios.get(`/api/post/${this.props.match.params.id}`).then((res) => {
+      this.setState({ ...res.data, loading: false });
+    });
   }
 
   render() {
@@ -29,8 +28,7 @@ class Post extends Component {
 
     return (
       <div className='post content-box'>
-        {!this.state.loading && this.state.title
-          ?
+        {!this.state.loading && this.state.title ? (
           <div>
             <div className='post-header'>
               <h2 className='title'>{this.state.title}</h2>
@@ -44,21 +42,19 @@ class Post extends Component {
               <p>{this.state.content}</p>
             </div>
           </div>
-          :
-          !this.state.loading
-            ?
-            <div className='oops-box'>
-              <h2 className='title'>Oops!</h2>
-              <p>Looks like this post doesn't exist anymore</p>
-            </div>
-            :
-            <div className='load-box'>
-              <div className='load-background'></div>
-              <div className='load'></div>
-            </div>
-        }
+        ) : !this.state.loading ? (
+          <div className='oops-box'>
+            <h2 className='title'>Oops!</h2>
+            <p>Looks like this post doesn't exist anymore</p>
+          </div>
+        ) : (
+          <div className='load-box'>
+            <div className='load-background'></div>
+            <div className='load'></div>
+          </div>
+        )}
       </div>
-    )
+    );
   }
 }
 
