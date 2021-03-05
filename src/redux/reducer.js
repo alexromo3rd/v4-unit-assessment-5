@@ -1,7 +1,9 @@
 const initialState = {
-  username: 'some user',
-  profile_pic:
-    'https://workhound.com/wp-content/uploads/2017/05/placeholder-profile-pic.png',
+  user: {
+    username: 'Alex',
+    profile_pic:
+      'https://workhound.com/wp-content/uploads/2017/05/placeholder-profile-pic.png',
+  },
 };
 
 const UPDATE_USER = 'UPDATE_USER';
